@@ -75,7 +75,7 @@ module.exports = function (Topics) {
 		return result.posts;
 	};
 
-	// The following code was created with the assistance of ChatGPT
+	// The following code was created with the assistance of ChatGPT.
 
 	async function addEventStartEnd(postData, set, reverse, topicData) {
 		console.log('Lucas Lin');
