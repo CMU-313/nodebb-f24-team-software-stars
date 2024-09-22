@@ -1,7 +1,10 @@
 dist/
 yarn.lock
 npm-debug.log
-node_modules/
+
+node_modules/*
+!node_modules/nodebb-theme-software-stars/
+
 sftp-config.json
 config.json
 jsconfig.json
