@@ -11,7 +11,6 @@ const posts = require('../posts');
 const meta = require('../meta');
 const plugins = require('../plugins');
 const utils = require('../utils');
-
 const backlinkRegex = new RegExp(`(?:${nconf.get('url').replace('/', '\\/')}|\b|\\s)\\/topic\\/(\\d+)(?:\\/\\w+)?`, 'g');
 
 module.exports = function (Topics) {
@@ -110,8 +109,8 @@ module.exports = function (Topics) {
 		const pids = postData.map(post => post && post.pid);
 
 		async function getPostUserData(field, method) {
-			const uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
-			const userData = await method(uids);
+			var uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
+			var userData = await method(uids);
 			return _.zipObject(uids, userData);
 		}
 		const [
