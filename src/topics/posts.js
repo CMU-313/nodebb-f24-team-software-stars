@@ -112,22 +112,19 @@ module.exports = function (Topics) {
 			var uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
 			var userData = await method(uids);
 
-			if (field === 'uid') {
-				postData.forEach(post => {
-					if (post && post.anonymous !== undefined && post.anonymous) {
-						const user = userData.find(user => user[field] === post[field]);
-						if (user) {
-							user.username = 'Anonymous';
-						}
-						// Remove the anonymous user from userData and uids
-						const index = uids.indexOf(user[field]);
-						if (index !== -1) {
-							uids.splice(index, 1);
-							userData = userData.filter(u => u[field] !== user[field]);
-						}
-					}
-				});
-			}
+			// if (field === 'uid') {
+			// 	postData.forEach(post => {
+			// 		if (post && post.anonymous !== undefined && post.anonymous) {
+			// 			const user = userData.find(user => user[field] === post[field]);
+			// 			// Remove the anonymous user from userData and uids
+			// 			const index = uids.indexOf(user[field]);
+			// 			if (index !== -1) {
+			// 				uids.splice(index, 1);
+			// 				userData = userData.filter(u => u[field] !== user[field]);
+			// 			}
+			// 		}
+			// 	});
+			// }
 			return _.zipObject(uids, userData);
 		}
 		const [
@@ -160,6 +157,12 @@ module.exports = function (Topics) {
 				if (meta.config.allowGuestHandles && postObj.uid === 0 && postObj.handle) {
 					postObj.user.username = validator.escape(String(postObj.handle));
 					postObj.user.displayname = postObj.user.username;
+				}
+
+				if (postObj.anonymous && postObj.user) {					
+					postObj.user.username = 'Anonymous';
+					postObj.user.displayname = 'Anonymous';
+					postObj.user.userslug = undefined;
 				}
 			}
 		});
