@@ -118,6 +118,12 @@ module.exports = function (Topics) {
 					if (user) {
 						user.username = 'Anonymous';
 					}
+					// Remove the anonymous user from userData and uids
+					const index = uids.indexOf(user[field]);
+					if (index !== -1) {
+						uids.splice(index, 1);
+						userData = userData.filter(u => u[field] !== user[field]);
+					}
 				}
 			});
 			return _.zipObject(uids, userData);

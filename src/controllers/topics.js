@@ -295,10 +295,12 @@ async function addTags(topicData, req, res, currentPage) {
 	}
 
 	if (postAtIndex) {
-		res.locals.linkTags.push({
-			rel: 'author',
-			href: `${url}/user/${postAtIndex.user.userslug}`,
-		});
+		if (postAtIndex.anonymous === undefined || !postAtIndex.anonymous) {
+			res.locals.linkTags.push({
+				rel: 'author',
+				href: `${url}/user/${postAtIndex.user.userslug}`,
+			});
+		}
 	}
 }
 
