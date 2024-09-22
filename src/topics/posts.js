@@ -111,6 +111,15 @@ module.exports = function (Topics) {
 		async function getPostUserData(field, method) {
 			var uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
 			var userData = await method(uids);
+
+			postData.forEach(post => {
+				if (post && post.anonymous) {
+					const user = userData.find(user => user[field] === post[field]);
+					if (user) {
+						user.username = 'Anonymous';
+					}
+				}
+			});
 			return _.zipObject(uids, userData);
 		}
 		const [
