@@ -67,10 +67,14 @@ module.exports = function (Topics) {
 			});
 		}
 
+		// create answered field
+		const answeredStatus = await Topics.getTopicField(topicData.tid, 'answered');
+
 		const result = await plugins.hooks.fire('filter:topic.getPosts', {
 			topic: topicData,
 			uid: uid,
 			posts: await Topics.addPostData(postData, uid),
+			answerStatus: answeredStatus === '1', // also pass in answerStatus to UI
 		});
 		return result.posts;
 	};

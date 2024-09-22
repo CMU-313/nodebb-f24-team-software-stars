@@ -77,6 +77,17 @@ module.exports = function (Topics) {
 	Topics.deleteTopicFields = async function (tid, fields) {
 		await db.deleteObjectFields(`topic:${tid}`, fields);
 	};
+
+	//sets the answered status of a topic
+	Topics.setAnswered = async function (tid, isAnswered) {
+		await Topics.setTopicField(tid, 'answered', isAnswered ? 1 : 0);
+	}
+
+	//gets the answered status of a topic from the database
+	Topics.getAnswered = async function (tid) {
+		const answered = await Topics.getTopicField(tid, 'answered');
+		return answered === 1;
+	}
 };
 
 function escapeTitle(topicData) {
@@ -138,5 +149,10 @@ function modifyTopic(topic, fields) {
 				class: escaped.replace(/\s/g, '-'),
 			};
 		});
+	}
+
+	// answered field is passed to UI as a boolean
+	if (fields.includes('answered') || !fields.length) {
+		topic.answered = topic.answered || 0;
 	}
 }
