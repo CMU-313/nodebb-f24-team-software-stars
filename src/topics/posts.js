@@ -11,6 +11,7 @@ const posts = require('../posts');
 const meta = require('../meta');
 const plugins = require('../plugins');
 const utils = require('../utils');
+
 const backlinkRegex = new RegExp(`(?:${nconf.get('url').replace('/', '\\/')}|\b|\\s)\\/topic\\/(\\d+)(?:\\/\\w+)?`, 'g');
 
 module.exports = function (Topics) {
@@ -109,22 +110,8 @@ module.exports = function (Topics) {
 		const pids = postData.map(post => post && post.pid);
 
 		async function getPostUserData(field, method) {
-			var uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
-			var userData = await method(uids);
-
-			// if (field === 'uid') {
-			// 	postData.forEach(post => {
-			// 		if (post && post.anonymous !== undefined && post.anonymous) {
-			// 			const user = userData.find(user => user[field] === post[field]);
-			// 			// Remove the anonymous user from userData and uids
-			// 			const index = uids.indexOf(user[field]);
-			// 			if (index !== -1) {
-			// 				uids.splice(index, 1);
-			// 				userData = userData.filter(u => u[field] !== user[field]);
-			// 			}
-			// 		}
-			// 	});
-			// }
+			const uids = _.uniq(postData.filter(p => p && parseInt(p[field], 10) >= 0).map(p => p[field]));
+			const userData = await method(uids);
 			return _.zipObject(uids, userData);
 		}
 		const [
@@ -159,10 +146,10 @@ module.exports = function (Topics) {
 					postObj.user.displayname = postObj.user.username;
 				}
 
-				if (postObj.anonymous && postObj.user) {					
+				if (postObj.anonymous && postObj.user) {
 					postObj.user.username = 'Anonymous';
 					postObj.user.displayname = 'Anonymous';
-					postObj.user.userslug = undefined;
+					postObj.user.userslug = '';
 				}
 			}
 		});
