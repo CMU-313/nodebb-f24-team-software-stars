@@ -12,6 +12,8 @@ PostObject:
     uid:
       type: number
       description: A user identifier
+    anonymous:
+      type: boolean
     timestamp:
       type: number
     deleted:
