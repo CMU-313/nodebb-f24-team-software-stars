@@ -32,6 +32,8 @@ get:
                   tid:
                     type: number
                     description: A topic identifier
+                  anonymous:
+                    type: number
                   content:
                     type: string
                   timestamp:
