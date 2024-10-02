@@ -78,7 +78,7 @@ User.getUsersWithFields = async function (uids, fields, uid) {
 	const userData = await User.getUsersFields(uids, results.fields);
 	results = await plugins.hooks.fire('filter:userlist.get', { users: userData, uid: uid });
 	return results.users;
-}; 
+};
 
 User.getUsers = async function (uids, uid) {
 	const userData = await User.getUsersWithFields(uids, [
