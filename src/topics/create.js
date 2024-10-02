@@ -120,8 +120,8 @@ module.exports = function (Topics) {
 		const tid = await Topics.create(data);
 
 		let postData = data;
-		if (!postData.anonymous) {
-			postData.anonymous = true;
+		if (postData.anonymous === undefined) {
+			postData.anonymous = false;
 		}
 		postData.tid = tid;
 		postData.ip = data.req ? data.req.ip : null;

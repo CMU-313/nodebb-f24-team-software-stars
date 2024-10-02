@@ -52,7 +52,7 @@ module.exports = function (Posts) {
 			post.isMainPost = post.topic && post.pid === post.topic.mainPid;
 			post.deleted = post.deleted === 1;
 			post.timestampISO = utils.toISOString(post.timestamp);
-			post.anonymous = post.anonymous === undefined ? false : post.anonymous;
+			post.anonymous = post.anonymous === undefined ? false : (post.anonymous === 1);
 		});
 
 		posts = posts.filter(post => tidToTopic[post.tid]);
