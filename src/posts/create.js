@@ -69,7 +69,6 @@ module.exports = function (Posts) {
 
 		result = await plugins.hooks.fire('filter:post.get', { post: postData, uid: data.uid });
 		result.post.isMain = isMain;
-		// result.post.endorsed = endorsed;
 		plugins.hooks.fire('action:post.save', { post: _.clone(result.post) });
 		return result.post;
 	};
