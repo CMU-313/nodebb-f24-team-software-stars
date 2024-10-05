@@ -241,7 +241,6 @@ module.exports = function (User) {
 
 			// User Icons
 			if (requestedFields.includes('picture') && user.username && user.uid && !meta.config.defaultAvatar) {
-				// console.log('User Icons', user);
 				if (!iconBackgrounds.includes(user['icon:bgColor'])) {
 					const nameAsIndex = Array.from(user.username).reduce((cur, next) => cur + next.charCodeAt(), 0);
 					user['icon:bgColor'] = iconBackgrounds[nameAsIndex % iconBackgrounds.length];
