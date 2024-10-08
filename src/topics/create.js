@@ -19,7 +19,6 @@ module.exports = function (Topics) {
 	Topics.create = async function (data) {
 		// This is an internal method, consider using Topics.post instead
 		const timestamp = data.timestamp || Date.now();
-		
 		const answered = false;
 		console.log(typeof answered);
 		const tid = await db.incrObjectField('global', 'nextTid');
@@ -38,7 +37,7 @@ module.exports = function (Topics) {
 			answered: answered,
 		};
 		console.log(typeof topicData.answered);
-		console.log(topicData)
+		console.log(topicData);
 		if (Array.isArray(data.tags) && data.tags.length) {
 			topicData.tags = data.tags.join(',');
 		}
