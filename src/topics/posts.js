@@ -69,18 +69,18 @@ module.exports = function (Topics) {
 		const uids = _.uniq(postData.map(post => post && post.uid));
 		const isAdminArr = await Promise.all(uids.map(uid => user.isAdmin(uid)));
 		const answeredByProf = isAdminArr.some(isAdmin => isAdmin);
+		topicData.answeredByProf = answeredByProf;
 		
-		await db.setObjectField('topic:' + topicData.tip, 'answeredByProfessor', answeredByProf)
 		const result = await plugins.hooks.fire('filter:topic.getPosts', {
 			topic: topicData,
 			uid: uid,
 			posts: await Topics.addPostData(postData, uid),
-			answeredByProfessor: answeredByProf,
 		});
 		return result.posts;
+		
 	};
-
 	
+
 	// The following code was created with the assistance of ChatGPT.
 
 	async function addEventStartEnd(postData, set, reverse, topicData) {

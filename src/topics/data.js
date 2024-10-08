@@ -139,5 +139,4 @@ function modifyTopic(topic, fields) {
 			};
 		});
 	}
-
 }
