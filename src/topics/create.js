@@ -234,7 +234,7 @@ module.exports = function (Topics) {
 			topicInfo,
 		] = await Promise.all([
 			posts.getUserInfoForPosts([postData.uid], uid),
-			Topics.getTopicFields(tid, ['tid', 'uid', 'title', 'slug', 'cid', 'postcount', 'mainPid', 'scheduled', 'tags']),
+			Topics.getTopicFields(tid, ['tid', 'uid', 'title', 'slug', 'cid', 'postcount', 'mainPid', 'scheduled', 'tags', 'answered']),
 			Topics.addParentPosts([postData]),
 			Topics.syncBacklinks(postData),
 			posts.parsePost(postData),

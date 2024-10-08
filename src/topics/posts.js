@@ -67,7 +67,7 @@ module.exports = function (Topics) {
 		}
 
 		const uids = _.uniq(postData.map(post => post && post.uid));
-		const isAdminArr = await Promise.all(uids.map(uid => user.isAdmin(uid)));
+		const isAdminArr = await Promise.all(uids.map(uid => user.isAdministrator(uid)));
 		const answeredByProf = isAdminArr.some(isAdmin => isAdmin);
 		topicData.answeredByProf = answeredByProf;
 		const result = await plugins.hooks.fire('filter:topic.getPosts', {
