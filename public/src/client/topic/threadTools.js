@@ -51,6 +51,16 @@ define('forum/topic/threadTools', [
 			return false;
 		});
 
+		topicContainer.on('click', '[component="topic/endorse"]', function () {
+			topicCommand('put', '/endorse', 'endorse');
+			return false;
+		});
+
+		topicContainer.on('click', '[component="topic/unendorse"]', function () {
+			topicCommand('del', '/endorse', 'endorse');
+			return false;
+		});
+
 		topicContainer.on('click', '[component="topic/pin"]', function () {
 			topicCommand('put', '/pin', 'pin');
 			return false;
@@ -353,7 +363,6 @@ define('forum/topic/threadTools', [
 		posts.addTopicEvents(data.events);
 	};
 
-
 	ThreadTools.setPinnedState = function (data) {
 		const threadEl = components.get('topic');
 		if (parseInt(data.tid, 10) !== parseInt(threadEl.attr('data-tid'), 10)) {
@@ -372,6 +381,24 @@ define('forum/topic/threadTools', [
 			));
 		}
 		ajaxify.data.pinned = data.pinned;
+
+		posts.addTopicEvents(data.events);
+	};
+
+	ThreadTools.setEndorsedState = function (data) {
+		const threadEl = components.get('topic');
+		if (parseInt(data.tid, 10) !== parseInt(threadEl.attr('data-tid'), 10)) {
+			return;
+		}
+
+		components.get('topic/endorse').toggleClass('hidden', data.isEndorsed).parent().attr('hidden', data.isEndorsed ? '' : null);
+		components.get('topic/unendorse').toggleClass('hidden', !data.isEndorsed).parent().attr('hidden', !data.isEndorsed ? '' : null);
+
+		threadEl.find('[component="post"][data-uid="' + app.user.uid + '"].deleted [component="post/tools"]').toggleClass('hidden', isLocked);
+
+		$('[component="topic/labels"] [component="topic/endorsed"]').toggleClass('hidden', !data.isEndorsed);
+		$('[component="post/tools"] .dropdown-menu').html('');
+		ajaxify.data.endorsed = data.isEndorsed;
 
 		posts.addTopicEvents(data.events);
 	};
