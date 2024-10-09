@@ -156,7 +156,7 @@ module.exports = function (utils, Benchpress, relative_path) {
 	}
 
 	function generateTopicClass(topic) {
-		const fields = ['locked', 'pinned', 'deleted', 'unread', 'scheduled'];
+		const fields = ['locked', 'pinned', 'deleted', 'unread', 'scheduled', 'endorsed'];
 		return fields.filter(field => !!topic[field]).join(' ');
 	}
 
