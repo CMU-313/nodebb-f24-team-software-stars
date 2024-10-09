@@ -52,6 +52,7 @@ module.exports = function (Topics) {
 			postData[0].index = 0;
 			replies = postData.slice(1);
 		}
+		Topics.addAnswered(topicData.tid, uid);
 
 		Topics.calculatePostIndices(replies, repliesStart);
 		await addEventStartEnd(postData, set, reverse, topicData);
@@ -66,10 +67,12 @@ module.exports = function (Topics) {
 			});
 		}
 
-		const uids = _.uniq(postData.map(post => post && post.uid));
-		const isAdminArr = await Promise.all(uids.map(uid => user.isAdministrator(uid)));
-		const answeredByProf = isAdminArr.some(isAdmin => isAdmin);
-		topicData.answeredByProf = answeredByProf;
+		// const uids = _.uniq(postData.map(post => post && post.uid));
+		// const isAdminArr = await Promise.all(uids.map(uid => user.isAdministrator(uid)));
+		// console.log('isAdminArr', isAdminArr);
+		// const answeredByProf = isAdminArr.some(isAdmin => isAdmin);
+		// topicData.answeredByProf = answeredByProf;
+		// await Topics.setTopicField(tid, 'answered', answeredByProf);
 		const result = await plugins.hooks.fire('filter:topic.getPosts', {
 			topic: topicData,
 			uid: uid,
@@ -77,6 +80,17 @@ module.exports = function (Topics) {
 		});
 		return result.posts;
 	};
+
+	Topics.addAnswered = async function (tid, uid) {
+		const isAdmin = await user.isAdministrator(uid);
+		const topicData = await Topics.getTopicData(tid);
+		const answeredByProf = isAdmin;
+		topicData.answeredByProf = answeredByProf;
+		console.log(typeof String(answeredByProf));
+		await Topics.setTopicField(tid, 'answered', String(answeredByProf));
+		
+	}
+
 	// The following code was created with the assistance of ChatGPT.
 	async function addEventStartEnd(postData, set, reverse, topicData) {
 		console.log('Lucas Lin');
