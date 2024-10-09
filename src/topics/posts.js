@@ -88,8 +88,7 @@ module.exports = function (Topics) {
 		topicData.answeredByProf = answeredByProf;
 		console.log(typeof String(answeredByProf));
 		await Topics.setTopicField(tid, 'answered', String(answeredByProf));
-		
-	}
+	};
 
 	// The following code was created with the assistance of ChatGPT.
 	async function addEventStartEnd(postData, set, reverse, topicData) {
