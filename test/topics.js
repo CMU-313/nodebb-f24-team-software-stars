@@ -616,6 +616,15 @@ describe('Topic\'s', () => {
 					assert.strictEqual(postsData[i].content, `topic reply ${i}`);
 				}
 			});
+
+			it('should check if post is answered by instructor', async () => {
+				const topicData = await topics.getTopicData(tid);
+				const postsData = await topics.getTopicPosts(topicData, `tid:${tid}:posts`, 0, -1, topic.userId, false);
+				const post = postsData[1];
+				assert.strictEqual(await topics.isPostAnsweredByInstructor(post.pid), false);
+				await topics.markPostAsAnsweredByInstructor(post.pid, true);
+				assert.strictEqual(await topics.isPostAnsweredByInstructor(post.pid), true);
+			});
 		});
 	});
 
