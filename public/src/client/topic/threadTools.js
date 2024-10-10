@@ -391,10 +391,12 @@ define('forum/topic/threadTools', [
 			return;
 		}
 
+		const isEndorsed = data.isEndorsed && !ajaxify.data.privileges.isAdminOrMod;
+
 		components.get('topic/endorse').toggleClass('hidden', data.isEndorsed).parent().attr('hidden', data.isEndorsed ? '' : null);
 		components.get('topic/unendorse').toggleClass('hidden', !data.isEndorsed).parent().attr('hidden', !data.isEndorsed ? '' : null);
 
-		threadEl.find('[component="post"][data-uid="' + app.user.uid + '"].deleted [component="post/tools"]').toggleClass('hidden', isLocked);
+		threadEl.find('[component="post"][data-uid="' + app.user.uid + '"].deleted [component="post/tools"]').toggleClass('hidden', isEndorsed);
 
 		$('[component="topic/labels"] [component="topic/endorsed"]').toggleClass('hidden', !data.isEndorsed);
 		$('[component="post/tools"] .dropdown-menu').html('');
@@ -429,7 +431,6 @@ define('forum/topic/threadTools', [
 		menu.toggleClass('hidden', state !== 'ignore');
 		components.get('topic/ignoring/check').toggleClass('fa-check', state === 'ignore');
 	}
-
 
 	return ThreadTools;
 });

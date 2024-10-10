@@ -127,7 +127,7 @@ module.exports = function (Topics) {
 		if (!isAdminOrMod) {
 			throw new Error('[[error:no-privileges]]');
 		}
-		await Topics.setTopicField(tid, 'endorse', endorse ? 1 : 0);
+		await Topics.setTopicField(tid, 'endorsed', endorse ? 1 : 0);
 
 		topicData.events = await Topics.events.log(tid, { type: endorse ? 'endorse' : 'unendorse', uid });
 		topicData.isEndorsed = endorse; // deprecate in v2.0
