@@ -301,7 +301,7 @@ define('forum/category/tools', [
 	}
 
 	function setEndorsedState(data) {
-		console.log("setEndorsedState", data);
+		console.log('setEndorsedState', data);
 		const topic = getTopicEl(data.tid);
 		topic.toggleClass('endorsed', data.isEndorsed);
 		topic.find('[component="topic/endorsed"]').toggleClass('hidden', !data.isEndorsed);
