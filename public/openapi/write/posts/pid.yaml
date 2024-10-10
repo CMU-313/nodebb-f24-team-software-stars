@@ -40,8 +40,6 @@ get:
                     type: number
                   deleted:
                     type: number
-                  endorsed:
-                    type: number
                   upvotes:
                     type: number
                   downvotes:
