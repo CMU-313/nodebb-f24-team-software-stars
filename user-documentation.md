@@ -31,7 +31,7 @@ To endorse more than one topic at a time at the category page:
 - You will see that there is no Topic Tools dropdown. The endorse button cannot be found/clicked.
 <img width="1439" alt="Screenshot 2024-10-10 at 10 56 47 PM" src="https://github.com/user-attachments/assets/63a5c4a6-10ef-4134-a6bf-7975b2635afc">
 
-- Additionally avigate to a category page.
+- Additionally navigate to a category page.
 - You will see that there is also no Topic Tools dropdown. The endorse button cannot be found/clicked.
 <img width="1440" alt="Screenshot 2024-10-10 at 10 57 15 PM" src="https://github.com/user-attachments/assets/16bb15a2-a740-4b26-924b-7064de7d7b3b">
 
