@@ -1,4 +1,3 @@
-
 'use strict';
 
 const _ = require('lodash');
@@ -54,6 +53,11 @@ module.exports = function (Topics) {
 			replies = postData.slice(1);
 		}
 
+		// calls addAnswered function to check if a admin has answered a topic
+		// called when a user views a topic
+		// takes in the topic id and the user id
+		Topics.addAnswered(topicData.tid, uid);
+
 		Topics.calculatePostIndices(replies, repliesStart);
 		await addEventStartEnd(postData, set, reverse, topicData);
 		const allPosts = postData.slice();
@@ -75,8 +79,17 @@ module.exports = function (Topics) {
 		return result.posts;
 	};
 
-	// The following code was created with the assistance of ChatGPT.
+	// function to check if a admin has answered a topic
+	// takes in the topic id and the user id
+	// returns a boolean value as a string due to errors from the database
+	Topics.addAnswered = async function (tid, uid) {
+		const isAdmin = await user.isAdministrator(uid);
+		const topicData = await Topics.getTopicData(tid);
+		topicData.answeredByProf = isAdmin;
+		await Topics.setTopicField(tid, 'answered', String(isAdmin));
+	};
 
+	// The following code was created with the assistance of ChatGPT.
 	async function addEventStartEnd(postData, set, reverse, topicData) {
 		if (!postData.length) {
 			return;

@@ -80,6 +80,8 @@ PostObject:
           type: number
         scheduled:
           type: number
+        answered:
+          type: string
         timestamp:
           type: number
         timestampISO:
