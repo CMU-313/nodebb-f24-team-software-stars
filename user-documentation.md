@@ -49,4 +49,8 @@ This test can be found at test/topics.js on line 620-629. This test ensures that
 ## Local Server Testing
 For this user story, since the automated test primarily focused on checking whether the answered attribute was present in the database schema, the feature required more user testing to follow the acceptance criteria. For the acceptance criteria, which is ‘a professor adding a post and the topic now being answered’, this is tested by checked by the following: 
 - To check when an admin has responded to a post and the ‘answered by professor’ tag appears, log into NodeBB as an admin, respond to a topic with a new post, and the tag should appear.
+<img width="1362" alt="image" src="https://github.com/user-attachments/assets/cf48594d-c65d-4910-b332-b67e90eb68bd">
+
 - To check that when a topic does not have a response from an admin, open NodeBB (do not have to be logged in as an admin) and view a topic without a response from an admin (can be a topic with no response) and the tag will not appear.
+<img width="1343" alt="image" src="https://github.com/user-attachments/assets/e6388f01-a958-4acc-98b6-88456ec58a68">
+
