@@ -52,5 +52,5 @@ For this user story, since the automated test primarily focused on checking whet
 <img width="1362" alt="image" src="https://github.com/user-attachments/assets/cf48594d-c65d-4910-b332-b67e90eb68bd">
 
 - To check that when a topic does not have a response from an admin, open NodeBB (do not have to be logged in as an admin) and view a topic without a response from an admin (can be a topic with no response) and the tag will not appear.
-<img width="1343" alt="image" src="https://github.com/user-attachments/assets/e6388f01-a958-4acc-98b6-88456ec58a68">
+<img width="1155" alt="image" src="https://github.com/user-attachments/assets/e36b1e17-8d82-44d5-9eff-189b70747ee6">
 
