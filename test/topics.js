@@ -625,7 +625,6 @@ describe('Topic\'s', () => {
 					assert.strictEqual(topicData.answeredByProf, false || true);
 				}
 			});
-
 		});
 	});
 
