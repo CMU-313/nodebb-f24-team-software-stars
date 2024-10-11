@@ -622,7 +622,7 @@ describe('Topic\'s', () => {
 				const postsData = await topics.getTopicPosts(topicData, `tid:${tid}:posts`, 0, -1, topic.userId, false);
 				assert.strictEqual(postsData.length, 31);
 				for (let i = 0; i < 31; i++) {
-					assert.strictEqual(topicData.answeredByProf, false || true);
+					assert.strictEqual(topicData.answered, undefined || 'true');
 				}
 			});
 		});
