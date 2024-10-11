@@ -10,7 +10,7 @@ const plugins = require('../plugins');
 
 const intFields = [
 	'tid', 'cid', 'uid', 'mainPid', 'postcount',
-	'viewcount', 'postercount', 'deleted', 'locked', 'pinned',
+	'viewcount', 'postercount', 'deleted', 'locked', 'pinned', 'endorsed',
 	'pinExpiry', 'timestamp', 'upvotes', 'downvotes', 'lastposttime',
 	'deleterUid',
 ];

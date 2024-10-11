@@ -44,6 +44,14 @@ Events._types = {
 		icon: 'fa-unlock',
 		translation: async (event, language) => translateSimple(event, language, 'topic:user-unlocked-topic'),
 	},
+	endorse: {
+		icon: 'fa-thumbs-up',
+		translation: async (event, language) => translateSimple(event, language, 'topic:user-endorsed-topic'),
+	},
+	unendorse: {
+		icon: 'fa-thumbs-down fa-rotate-90',
+		translation: async (event, language) => translateSimple(event, language, 'topic:user-unendorsed-topic'),
+	},
 	delete: {
 		icon: 'fa-trash',
 		translation: async (event, language) => translateSimple(event, language, 'topic:user-deleted-topic'),
