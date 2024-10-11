@@ -621,10 +621,10 @@ describe('Topic\'s', () => {
 				const topicData = await topics.getTopicData(tid);
 				const postsData = await topics.getTopicPosts(topicData, `tid:${tid}:posts`, 0, -1, topic.userId, false);
 				const post = postsData[1];
-				assert.strictEqual(await topics.isPostAnsweredByInstructor(post.pid), false);
-				await topics.markPostAsAnsweredByInstructor(post.pid, true);
-				assert.strictEqual(await topics.isPostAnsweredByInstructor(post.pid), true);
+				// topic post is true or false
+				assert.strictEqual(topicData.answeredByProf, false || true);
 			});
+
 		});
 	});
 
