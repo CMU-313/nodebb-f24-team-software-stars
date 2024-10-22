@@ -50,7 +50,7 @@ jobs:
       
       - name: Install frontend repo as a dependency
         run: |
-          npm install ../nodebb-frontend-f24-team-software-stars
+          npm install ./nodebb-frontend-f24-team-software-stars
           
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
