@@ -109,7 +109,7 @@
         "nodebb-theme-peace": "2.2.6",
         "nodebb-theme-persona": "13.3.25",
         "nodebb-widget-essentials": "7.0.18",
-        "nodebb-frontend-repo": "git+https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git"
+        "nodebb-frontend-repo": "git+https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git",
         "nodemailer": "6.9.13",
         "nprogress": "0.2.0",
         "passport": "0.7.0",
