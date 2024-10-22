@@ -36,6 +36,10 @@ jobs:
         run: |
           git clone https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git
       
+      - name: Install NodeBB dependencies
+        run: |
+          npm install
+      
       - name: Install frontend repo as a dependency
         run: |
           npm install ./nodebb-frontend-f24-team-software-stars
