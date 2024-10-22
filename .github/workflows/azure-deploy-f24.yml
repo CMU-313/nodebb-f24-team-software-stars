@@ -32,6 +32,14 @@ jobs:
         with:
           node-version: '20.17.0'
 
+      - name: Clone frontend repo as a subdirectory
+        run: |
+          git clone https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git
+      
+      - name: Install frontend repo as a dependency
+        run: |
+          npm install ./nodebb-frontend-f24-team-software-stars
+
       - name: Set up NodeBB
         run: |
           ./nodebb setup '{"url":"https://nodebb-software-stars.azurewebsites.net:443",
@@ -43,14 +51,6 @@ jobs:
             "redis:host": "${{ secrets.REDIS_HOST }}",
             "redis:port": "6379",
             "redis:password": "${{ secrets.REDIS_PASSWORD }}" }'
-      
-      - name: Clone frontend repo
-        run: |
-          git clone https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git
-      
-      - name: Install frontend repo as a dependency
-        run: |
-          npm install ./nodebb-frontend-f24-team-software-stars
           
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
