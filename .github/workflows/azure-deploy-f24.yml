@@ -44,17 +44,9 @@ jobs:
             "redis:port": "6379",
             "redis:password": "${{ secrets.REDIS_PASSWORD }}" }'
 
-      - name: Clone frontend repo as a subdirectory
-        run: |
-          git clone https://github.com/CMU-313/nodebb-frontend-f24-team-software-stars.git
-      
       - name: Install frontend repo as a dependency
         run: |
           npm install ./nodebb-frontend-f24-team-software-stars
-      
-      - name: Run build command
-        run: |
-          ./nodebb build tpl
           
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
