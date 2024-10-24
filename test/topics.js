@@ -415,6 +415,7 @@ describe('Topic\'s', () => {
 				assert.strictEqual(topicData.deleted, 0);
 				assert.strictEqual(topicData.locked, 0);
 				assert.strictEqual(topicData.pinned, 0);
+				assert.strictEqual(topicData.endorsed, 0);
 				done();
 			});
 		});
@@ -464,6 +465,7 @@ describe('Topic\'s', () => {
 				assert.equal(data.deleted, false);
 				assert.equal(data.locked, false);
 				assert.equal(data.pinned, false);
+				assert.equal(data.endorsed, false);
 			});
 
 			it('should return first 3 posts including main post', async () => {
@@ -616,6 +618,15 @@ describe('Topic\'s', () => {
 					assert.strictEqual(postsData[i].content, `topic reply ${i}`);
 				}
 			});
+
+			it('should check if post has answered by instructor field', async () => {
+				const topicData = await topics.getTopicData(tid);
+				const postsData = await topics.getTopicPosts(topicData, `tid:${tid}:posts`, 0, -1, topic.userId, false);
+				assert.strictEqual(postsData.length, 31);
+				for (let i = 0; i < 31; i++) {
+					assert.strictEqual(topicData.answered, undefined || 'true');
+				}
+			});
 		});
 	});
 
@@ -699,6 +710,22 @@ describe('Topic\'s', () => {
 			const pinned = await topics.getTopicField(newTopic.tid, 'pinned');
 			assert.strictEqual(pinned, 0);
 		});
+
+
+
+		it('should endorse topic', async () => {
+			await apiTopics.endorse({ uid: adminUid }, { tids: [newTopic.tid], cid: categoryObj.cid });
+			const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(endorsed, 1);
+		});
+
+		it('should unendorse topic', async () => {
+			await apiTopics.unendorse({ uid: adminUid }, { tids: [newTopic.tid], cid: categoryObj.cid });
+			const endorsed = await topics.getTopicField(newTopic.tid, 'endorsed');
+			assert.strictEqual(endorsed, 0);
+		});
+
+
 
 		it('should move all topics', (done) => {
 			socketTopics.moveAll({ uid: adminUid }, { cid: moveCid, currentCid: categoryObj.cid }, (err) => {
