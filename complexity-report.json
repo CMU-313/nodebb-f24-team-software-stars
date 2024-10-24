@@ -1,0 +1,30 @@
+Mean per-function logical LOC: 1
+Mean per-function parameter count: 0
+Mean per-function cyclomatic complexity: 1
+Mean per-function Halstead effort: 11.60964047443681
+Mean per-module maintainability index: 162.61472146706737
+First-order density: 0%
+Change cost: 100%
+Core size: 0%
+
+test.js
+
+  Physical LOC: 3
+  Logical LOC: 2
+  Mean parameter count: 0
+  Cyclomatic complexity: 1
+  Cyclomatic complexity density: 50%
+  Maintainability index: 162.61472146706737
+  Dependency count: 0
+
+  Function: test
+    Line No.: 1
+    Physical LOC: 3
+    Logical LOC: 1
+    Parameter count: 0
+    Cyclomatic complexity: 1
+    Cyclomatic complexity density: 100%
+    Halstead difficulty: 1
+    Halstead volume: 11.60964047443681
+    Halstead effort: 11.60964047443681
+
