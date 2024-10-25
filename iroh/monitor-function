@@ -17,7 +17,6 @@ function monitorFunction(fn, name) {
         }
     `);
 
-	// Using Iroh's listeners
 	stage.addListener(Iroh.CALL)
 		.on('before', () => {
 			console.log(`Entering ${name}`);
@@ -26,7 +25,6 @@ function monitorFunction(fn, name) {
 			console.log(`Exiting ${name}`);
 		});
 
-	// Return the original function without timing
 	return async function (...args) {
 		console.log(`Entering ${name}`);
 
