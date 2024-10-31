@@ -1,3 +1,4 @@
+// @flow
 'use strict';
 
 const validator = require('validator');
@@ -15,7 +16,7 @@ const intFields = [
 	'deleterUid',
 ];
 
-module.exports = function (Topics) {
+module.exports = function (Topics: Object) {
 	Topics.getTopicsFields = async function (tids, fields) {
 		if (!Array.isArray(tids) || !tids.length) {
 			return [];
@@ -79,7 +80,7 @@ module.exports = function (Topics) {
 	};
 };
 
-function escapeTitle(topicData) {
+function escapeTitle(topicData: { title?: string, titleRaw?: string }) {
 	if (topicData) {
 		if (topicData.title) {
 			topicData.title = translator.escape(validator.escape(topicData.title));
@@ -90,7 +91,7 @@ function escapeTitle(topicData) {
 	}
 }
 
-function modifyTopic(topic, fields) {
+function modifyTopic(topic: Object, fields: Array<string>) {
 	if (!topic) {
 		return;
 	}
