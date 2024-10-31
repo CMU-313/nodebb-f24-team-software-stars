@@ -47,9 +47,6 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
-
-      - name: Initalize Flow
-        run: npm run flow init
       
       - name: Run Flow
         run: npm run flow
@@ -80,6 +77,9 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
+      - name: Run ESLint
+        run: npm run lint
+
       - name: Node tests
         run: npm test
 
@@ -89,7 +89,5 @@ jobs:
       - name: Test coverage
         uses: coverallsapp/github-action@v2
 
-      - name: Run ESLint
-        run: npm run lint
 
         
