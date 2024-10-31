@@ -48,6 +48,9 @@ jobs:
         with:
           useLockFile: false
       
+      - name: Initialize Flow
+        run: npm run flow init
+
       - name: Run Flow
         run: npm run flow
 
@@ -77,11 +80,11 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
-      - name: Run ESLint
-        run: npm run lint
-
       - name: Node tests
         run: npm test
+
+      - name: Run ESLint
+        run: npm run lint
 
       - name: Extract coverage info
         run: npm run coverage
