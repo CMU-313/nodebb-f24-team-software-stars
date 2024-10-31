@@ -73,6 +73,12 @@ jobs:
             }
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
+      
+      - name: Initalize Flow
+        run: npm run flow init
+
+      - name: Run Flow
+        run: npm run flow
 
       - name: Initalize Flow
         run: npm run flow init
