@@ -1,4 +1,4 @@
-
+// @flow
 'use strict';
 
 const fs = require('fs');
@@ -12,7 +12,7 @@ const db = require('../database');
 const plugins = require('../plugins');
 const batch = require('../batch');
 
-module.exports = function (User) {
+module.exports = function (User: Object) {
 	User.logIP = async function (uid, ip) {
 		if (!(parseInt(uid, 10) > 0)) {
 			return;
@@ -67,7 +67,7 @@ module.exports = function (User) {
 		await batch.processSortedSet('group:administrators:members', async (uids) => {
 			const userFieldsToLoad = fields.filter(field => field !== 'ip' && field !== 'password');
 			const usersData = await User.getUsersFields(uids, userFieldsToLoad);
-			let userIps = [];
+			let userIps: string[] = [];
 			if (showIps) {
 				userIps = await db.getSortedSetsMembers(uids.map(uid => `uid:${uid}:ip`));
 			}

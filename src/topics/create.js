@@ -1,4 +1,4 @@
-
+// @flow
 'use strict';
 
 const _ = require('lodash');
@@ -15,7 +15,7 @@ const privileges = require('../privileges');
 const categories = require('../categories');
 const translator = require('../translator');
 
-module.exports = function (Topics) {
+module.exports = function (Topics: any) {
 	Topics.create = async function (data) {
 		// This is an internal method, consider using Topics.post instead
 		const timestamp = data.timestamp || Date.now();
@@ -34,6 +34,7 @@ module.exports = function (Topics) {
 			postcount: 0,
 			viewcount: 0,
 			answered: answered,
+			tags: '',
 		};
 		if (Array.isArray(data.tags) && data.tags.length) {
 			topicData.tags = data.tags.join(',');
@@ -223,7 +224,8 @@ module.exports = function (Topics) {
 		return postData;
 	};
 
-	async function onNewPost(postData, data) {
+	// @flow
+	async function onNewPost(postData: any, data: any) {
 		const { tid, uid } = postData;
 		await Topics.markAsRead([tid], uid);
 		const [
@@ -264,7 +266,7 @@ module.exports = function (Topics) {
 		check(content, meta.config.minimumPostLength, meta.config.maximumPostLength, 'content-too-short', 'content-too-long');
 	};
 
-	function check(item, min, max, minError, maxError) {
+	function check(item: string, min: number, max: Number, minError:any, maxError:any) {
 		// Trim and remove HTML (latter for composers that send in HTML, like redactor)
 		if (typeof item === 'string') {
 			item = utils.stripHTMLTags(item).trim();
@@ -273,11 +275,11 @@ module.exports = function (Topics) {
 		if (item === null || item === undefined || item.length < parseInt(min, 10)) {
 			throw new Error(`[[error:${minError}, ${min}]]`);
 		} else if (item.length > parseInt(max, 10)) {
-			throw new Error(`[[error:${maxError}, ${max}]]`);
+			throw new Error(`[[error:${maxError}, ${String(max)}]]`);
 		}
 	}
 
-	async function guestHandleValid(data) {
+	async function guestHandleValid(data: any) {
 		if (meta.config.allowGuestHandles && parseInt(data.uid, 10) === 0 && data.handle) {
 			if (data.handle.length > meta.config.maximumUsernameLength) {
 				throw new Error('[[error:guest-handle-invalid]]');
@@ -289,7 +291,7 @@ module.exports = function (Topics) {
 		}
 	}
 
-	async function canReply(data, topicData) {
+	async function canReply(data:any, topicData:any) {
 		if (!topicData) {
 			throw new Error('[[error:no-topic]]');
 		}
