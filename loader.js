@@ -1,5 +1,5 @@
-require('@babel/register');
 'use strict';
+require('@babel/register');
 
 const nconf = require('nconf');
 const fs = require('fs');
