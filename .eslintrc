@@ -6,8 +6,7 @@
     ],
     "extends": [
         "plugin:ft-flow/recommended",
-		"nodebb"
-        
+        "nodebb"
     ],
     "env": {
         "node": true
