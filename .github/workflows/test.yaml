@@ -80,11 +80,11 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
-      - name: Node tests
-        run: npm test
-
       - name: Run ESLint
         run: npm run lint
+
+      - name: Node tests
+        run: npm test
 
       - name: Extract coverage info
         run: npm run coverage
