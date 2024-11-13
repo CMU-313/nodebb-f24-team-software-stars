@@ -144,3 +144,9 @@ PostObject:
       type: boolean
     replies:
       type: number
+  additionalProperties:
+    type: object
+    properties:
+      translatedContent:
+        type: string
+        nullable: true

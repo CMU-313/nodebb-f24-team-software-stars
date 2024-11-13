@@ -61,6 +61,8 @@ get:
                           description: A topic identifier
                         content:
                           type: string
+                        translatedContent:
+                          type: string
                         timestamp:
                           type: number
                         votes:

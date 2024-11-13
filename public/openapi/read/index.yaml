@@ -77,6 +77,8 @@ get:
                                               type: number
                                             content:
                                               type: string
+                                            translatedContent:
+                                              type: string
                                             isEnglish:
                                               type: number
                                             timestampISO:
