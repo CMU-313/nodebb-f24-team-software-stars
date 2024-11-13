@@ -61,11 +61,15 @@ get:
                           description: A topic identifier
                         content:
                           type: string
+                        translatedContent:
+                          type: string
                         timestamp:
                           type: number
                         votes:
                           type: number
                         deleted:
+                          type: number
+                        isEnglish:
                           type: number
                         upvotes:
                           type: number

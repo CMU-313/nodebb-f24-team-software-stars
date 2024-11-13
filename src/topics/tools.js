@@ -10,7 +10,6 @@ const plugins = require('../plugins');
 const privileges = require('../privileges');
 const utils = require('../utils');
 
-
 module.exports = function (Topics) {
 	const topicTools = {};
 	Topics.tools = topicTools;
@@ -117,6 +116,7 @@ module.exports = function (Topics) {
 	topicTools.unendorse = async function (tid, uid) {
 		return await toggleEndorse(tid, uid, false);
 	};
+
 
 	async function toggleEndorse(tid, uid, endorse) {
 		const topicData = await Topics.getTopicFields(tid, ['tid', 'uid', 'cid']);

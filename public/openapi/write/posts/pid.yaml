@@ -40,6 +40,8 @@ get:
                     type: number
                   deleted:
                     type: number
+                  isEnglish:
+                    type: number
                   upvotes:
                     type: number
                   downvotes:
@@ -64,6 +66,12 @@ get:
                     type: boolean
                   downvoted:
                     type: boolean
+                additionalProperties:
+                  type: object
+                  properties:
+                    translatedContent:
+                      type: string
+                      nullable: true
 put:
   tags:
     - posts

@@ -16,6 +16,8 @@ PostObject:
       type: number
     deleted:
       type: boolean
+    isEnglish:
+      type: boolean
     upvotes:
       type: number
     downvotes:
@@ -142,3 +144,9 @@ PostObject:
       type: boolean
     replies:
       type: number
+  additionalProperties:
+    type: object
+    properties:
+      translatedContent:
+        type: string
+        nullable: true
