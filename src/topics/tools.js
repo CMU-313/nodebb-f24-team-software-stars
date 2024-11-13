@@ -10,8 +10,6 @@ const plugins = require('../plugins');
 const privileges = require('../privileges');
 const utils = require('../utils');
 
-const { monitorFunction } = require('../../iroh/monitor-function');
-
 module.exports = function (Topics) {
 	const topicTools = {};
 	Topics.tools = topicTools;
@@ -111,13 +109,14 @@ module.exports = function (Topics) {
 		return topicData;
 	}
 
-	topicTools.endorse = monitorFunction(async function (tid, uid) {
+	topicTools.endorse = async function (tid, uid) {
 		return await toggleEndorse(tid, uid, true);
-	}, 'topicTools.endorse');
+	};
 
-	topicTools.unendorse = monitorFunction(async function (tid, uid) {
+	topicTools.unendorse = async function (tid, uid) {
 		return await toggleEndorse(tid, uid, false);
-	}, 'topicTools.unendorse');
+	};
+
 
 	async function toggleEndorse(tid, uid, endorse) {
 		const topicData = await Topics.getTopicFields(tid, ['tid', 'uid', 'cid']);
