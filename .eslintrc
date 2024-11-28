@@ -1,3 +1,14 @@
 {
-	"extends": "nodebb"
+    "root": true,
+    "parser": "hermes-eslint",
+    "plugins": [
+        "ft-flow"
+    ],
+    "extends": [
+        "plugin:ft-flow/recommended",
+        "nodebb"
+    ],
+    "env": {
+        "node": true
+    }
 }

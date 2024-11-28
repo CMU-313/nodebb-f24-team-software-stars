@@ -17,7 +17,7 @@ module.exports = function (Posts) {
 		}
 
 		options.stripTags = options.hasOwnProperty('stripTags') ? options.stripTags : false;
-		options.parse = options.hasOwnProperty('parse') ? options.parse : true;
+		options.parse = options.hasOwnProperty('parse') ? options.parse : "true";
 		options.extraFields = options.hasOwnProperty('extraFields') ? options.extraFields : [];
 
 		const fields = ['pid', 'tid', 'content', 'uid', 'timestamp', 'deleted', 'upvotes', 'downvotes', 'replies', 'handle'].concat(options.extraFields);

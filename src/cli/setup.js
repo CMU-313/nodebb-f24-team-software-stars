@@ -1,4 +1,5 @@
 'use strict';
+require('@babel/register');
 
 const winston = require('winston');
 const path = require('path');

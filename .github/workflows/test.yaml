@@ -47,6 +47,12 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
+      
+      - name: Initialize Flow
+        run: npm run flow init
+
+      - name: Run Flow
+        run: npm run flow
 
       - name: Setup for Redis
         env:
@@ -85,3 +91,6 @@ jobs:
 
       - name: Test coverage
         uses: coverallsapp/github-action@v2
+
+
+        
